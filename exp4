@@ -1,0 +1,56 @@
+<html>
+<head>
+<title>Experiment 4</title>
+</head>
+<body>
+<a href="diwali.html" target="_blank">
+<img src="diwali.jpg" width=700 height=500 alt="Diwali">
+</a><h2>
+Diwali</h2>
+<a href="holi.html" target="_blank">
+<img src="holi.jpg" width=700 height=500 alt="Holi">
+</a><h2>
+Holi</h2>
+<a href="navaratri.html" target="_blank">>
+<img src="Navaratri.jpg" width=700 height=500 alt="Navratri">
+</a><h2>
+Navratri</h2>
+</body>
+</html>
+diwali.html
+<html>
+<head>
+<title>Diwali</title>
+</head>
+<body>
+9
+<img src="diwali.jpg" width=700 height=500 alt="Diwali">
+<h1>Diwali</h1>
+<p>Diwali is known as festival of lights</p>
+</body></html>
+holi.html
+<html>
+<head><title>holi</title></head>
+<body>
+<img src="holi.jpg" width="700px" height="500px">
+<h1>Holi</h1>
+<p>Holi is considered as one of the most revered and celebrated festivals of India and it is
+celebrated in almost every part of the country. It is also sometimes called asthe “festival of love”
+as on this day people get to unite together forgetting all resentments and all types of bad feeling
+towards each other. The great Indian festival lasts for a day and a night, which starts in the
+evening of Purnima or the Full Moon Day in the month of Falgun. It is celebrated with the name
+Holika Dahan or Choti Holi on first evening of the festival and the following day is called Holi.
+</p>
+</body>
+</html>
+navaratri.html
+<html>
+<head>
+<title>Diwali</title>
+</head>
+<body>
+<img src="Navaratri.jpg" width=700 height=500 alt="Diwali">
+<h1>Navrathri</h1>
+<p>Navrathri is known for Pooja</p>
+</body>
+</html>
