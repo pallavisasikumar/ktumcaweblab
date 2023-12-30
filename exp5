@@ -1,0 +1,61 @@
+<html>
+<head>
+<title>Frames</title>
+</head>
+<body>
+<iframe src="frm_details.html" width="20%" height="100%" frameborder="1"></iframe>
+<iframe name="details" src="" width="40%" height="100%" frameborder="1"></iframe>
+</body>
+</html>
+
+Frm_details.html
+<html>
+<head>
+<title>Item Menu</title>
+</head>
+<body>
+<ul>
+<li><a href="fruit.html" target="details">Fruits</a></li>
+<li><a href="vegetables.html" target="details">Vegetables</a></li>
+<li><a href="flower.html" target="details">Flowers</a></li>
+<li><a href="tree.html" target="details">Trees</a></li>
+</ul>
+</body>
+</html>
+
+flower.html
+<html>
+<head>
+11
+<title></title>
+</head>
+<body>
+<h1>flower</h1>
+<img src="flowers.jpg" width="500px" height="500px">
+<p>You have clicked on flower</p>
+</body>
+</html>
+
+vegetables.html
+<html>
+<head>
+<title></title>
+</head>
+<body>
+<h1>vegetables</h1>
+<img src="veg.jpg" width="500px" height="500px">
+<p>You have clicked on vegetables</p>
+</body>
+</html>
+
+tree.html
+<html>
+<head>
+<title></title>
+</head>
+<body>
+<h1>trees</h1>
+<img src="tree.jpg" width="500px" height="500px">
+<p>You have clicked on Trees</p>
+</body>
+</html>
