@@ -1,0 +1,111 @@
+<html>
+<head>
+<style>
+iframe{
+border:none;
+}
+</style>
+</head>
+24
+<body>
+<iframe src="Side-Navbar.html" name="itemlist" width="15%" height="90%"></iframe>
+<iframe src="details.html" name="itemdetails" width="60%" height="90%"></iframe>
+</body>
+</html>
+Side-Navbar.html
+<html>
+<head>
+<link rel="stylesheet" href="sidenav.css">
+</head>
+<body>
+<div class="sidenav">
+<a href="aboutus.html" target="itemdetails">About Us</a>
+<a href="department.html" target="itemdetails">Department</a>
+<a href="mission.html" target="itemdetails">Mission and vision</a>
+<a href="contactus.html" target="itemdetails">Contact Us</a>
+</div>
+</body>
+</html>
+aboutus.html
+<html>
+<head>
+<title> </title>
+</head>
+<body>
+<h1 style="text-align:center">ABOUT US</h1>
+<br>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+</body>
+</html>
+25
+department.html
+<html>
+<head>
+<title> </title>
+</head>
+<body>
+<h1 style="text-align:center">DEPARTMENT</h1>
+<br>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+</p>
+</body>
+</html>
+mission.html
+<html>
+<head>
+<title> </title>
+</head>
+<body>
+<h1 style="text-align:center">MISSION AND VISION</h1>
+<br>
+<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+</body>
+</html>
+contactus.html
+<html>
+<head>
+<title> </title>
+</head>
+<body>
+<h1 style="text-align:center">Contact Us</h1>
+<br>
+<p>INFO@RIT.AC.IN<br>
+0481 250 6153<br>
+26
+0481 250 6153</p>
+</body>
+</html>
+details.html
+<html>
+<body>
+<h1>Side NavBar</h1>
+</body>
+</html>
+sidenav.css
+body{
+display:flex;
+flex-direction:row;
+align-items:start;
+}
+.sidenav{
+display:flex;
+flex-direction:column;
+gap:40px;
+background-color:green;
+height:90vh;
+padding:10px;
+}
+a{
+text-decoration: none;
+color: white;
+font-size: 18px;
+padding: 6px 8px 6px 18px;
+}
+a: hover{
+color: red;
+}
+.main h1{
+27
+padding:0;
+margin:0;
+}
