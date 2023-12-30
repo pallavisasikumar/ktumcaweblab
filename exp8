@@ -1,0 +1,23 @@
+<html>
+<head>
+<link rel="stylesheet" href="style1.css">
+</head><body>
+<p>This is a paragraph with tag selector</p>
+<p class="para">This is a paragraph with class selector</p>
+<p id="p1">This is a paragraph with id selector</p>
+</body></html>
+
+// css part
+style1.css
+p{
+color:red;
+background-color:black;
+}
+.para{
+color:white;
+background-color:red;
+}
+#p1{
+color:blue;
+background-color:yellow;
+}
