@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <title>student</title>
+</head>
+<body>
+    <form method="request" action="details.php">
+        name:<input type="text" name="name"><br><br>
+        email_id:<input type="email" name="mail"><br><br>
+        adress:<input type="textarea" name="adress"><br><br>
+        gender:<input type="radio" name="gender" value="female">Female
+                <input type="radio" name="gender" value="male">Male<br><br>
+        DOB:<input type="date" name="dob"><br><br>
+        <input type="submit" value="submit"><br>
+
+</form>
+
+</body>
+</html>
+
+details.php
+
+<html>
+    <body>
+        
+Name:<?php echo $_REQUEST["name"];?><br>
+email_id:<?php echo $_REQUEST["mail"];?><br>
+adress:<?php echo $_REQUEST["adress"];?><br>
+gender:<?php echo $_REQUEST["gender"];?><br>
+dob:<?php echo $_REQUEST["dob"];?><br>
+</body>
+    </html>
