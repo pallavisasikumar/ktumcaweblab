@@ -1,0 +1,95 @@
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+CREATE TABLE `users_table` (
+  `username` varchar(20) NOT NULL,
+  `password` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `users_table`
+--
+
+INSERT INTO `users_table` (`username`, `password`) VALUES
+('user', '1234');
+
+
+
+
+index.php
+
+<html lang="en">
+<head>
+    <title>Login Form</title>
+</head>
+<body>
+    <h2>Login Form</h2>
+    <form method="GET" action="">
+        <label for="username">Username:</label>
+        <input type="text" name="username" required><br>
+
+        <label for="password">Password:</label>
+        <input type="password" name="password" required><br>
+
+        <input type="submit" value="Login" name="sbtn">
+    </form>
+
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$db = "userlogin";
+
+$conn = mysqli_connect($servername, $username, $password, $db);
+
+if ($conn) {
+    if (isset($_REQUEST["sbtn"])) {
+        $username = $_REQUEST["username"];
+        $password = $_REQUEST["password"];
+
+        $sql = "SELECT * FROM users_table";
+        $result = mysqli_query($conn, $sql);
+
+        while ($row = mysqli_fetch_array($result)) {
+            if (($row['username'] == $username) && ($row['password'] == $password)) {
+                header("Location: welcome.php?username=".$username);
+                exit();
+            } else {
+                echo "<script>alert('Incorrect Username or Password')</script>";
+            }
+        }
+    }
+
+    mysqli_close($conn);
+}
+?>
+</body>
+</html>
+
+
+<!-- 
+
+username : user
+password : 1234
+
+ -->
+
+wecome,php
+<html>
+<head>
+    <title>Welcome</title>
+</head>
+<body>
+    <h2>Welcome</h2>
+
+    <?php
+    $username = isset($_GET['username']) ? htmlspecialchars($_GET['username']) : '';
+
+    // Display a welcome message
+    echo "<p>Welcome, $username!</p>";
+    ?>
+
+    <p>This is the welcome page.</p>
+</body>
+</html>
