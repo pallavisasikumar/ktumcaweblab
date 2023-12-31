@@ -1,0 +1,259 @@
+<html>
+
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="css/login-styles.css">
+</head>
+
+<body>
+    <form method="post" action="">
+        <h2>Student Login</h2>
+        <div>
+            <label for="email">Email </label>
+            <input type="text" name="email" id="email" required>
+        </div>
+
+        <div>
+            <label for="password">Password </label>
+            <input type="password" name="password" id="password" required>
+        </div>
+
+        <button type="submit" name="login" value="login">Login</button>
+        <p class="register-link">New user? <a href="register.php">Register here</a></p>
+    </form>
+</body>
+<?php
+
+$host = "localhost";
+$username = "root";
+$password = "";
+$database = "studentlogin";
+
+$conn = mysqli_connect($host, $username, $password, $database);
+
+if ($conn) {
+    session_start();
+
+    if (isset($_POST["login"])) {
+        $mail = $_POST["email"];
+        $password = $_POST["password"];
+
+        $sql = "SELECT * FROM students";
+        $result = mysqli_query($conn, $sql);
+
+        while ($row = mysqli_fetch_array($result)) {
+            if (($row['mail'] == $mail) && ($row['password'] == $password)) {
+                $_SESSION["user_email"] = $mail; 
+                header("Location: student-details.php");
+                exit();
+            } else {
+                $flag = 0;
+            }
+        }
+        if ($flag == 0) {
+            echo "<script> alert('Incorrect Email or Password') </script>";
+        }
+    }
+
+    mysqli_close($conn);
+}
+?>
+</html>
+
+//
+
+<html>
+    <title>Student Registration Form</title>
+    <link rel="stylesheet" href="css/register-styles.css">
+</head>
+
+<body>
+    <h2>Student Registration Form</h2>
+    <form method="post" action="">
+        <table>
+            <tr>
+                <td>
+                    <label for="fname">First Name:</label>
+                    <input type="text" name="fname" maxlength="30" required>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="lname">Last Name:</label>
+                    <input type="text" name="lname" maxlength="30" required>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="dob">Date Of Birth:</label>
+                    <input type="date" name="dob" required>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="mail">Email:</label>
+                    <input type="email" name="mail" required>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="pno">Mobile Number:</label>
+                    <input type="tel" name="pno" pattern="[0-9]{10}" required>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="gender">
+                    <label>Gender:</label>
+                    <label><input type="radio" name="gender" value="male" required> Male</label>
+                    <label><input type="radio" name="gender" value="female" required> Female</label>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label for="password">Password:</label>
+                    <input type="password" name="password" maxlength="30" required>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="colspan2">
+                    <button type="submit" name="submit" value="submit">Submit</button>
+                </td>
+            </tr>
+        </table>
+        <p class="login-link">Already have an account? <a href="index.php">Login</a></p>
+    </form>
+
+    <?php
+    session_start();
+
+    $host = "localhost";
+    $username = "root";
+    $password = "";
+    $database = "studentlogin";
+
+    $conn = mysqli_connect($host, $username, $password, $database);
+
+    if (!$conn) {
+        die("Connection failed: " . mysqli_connect_error());
+    }
+
+    if (isset($_POST['submit'])) {
+        $fname = $_POST["fname"];
+        $lname = $_POST["lname"];
+        $dob = $_POST["dob"];
+        $mail = $_POST["mail"];
+        $pno = $_POST["pno"];
+        $gender = $_POST["gender"];
+        $password = $_POST["password"];
+
+        $sql = "INSERT INTO students (fname, lname, dob, mail, pno, gender, password) 
+            VALUES ('$fname', '$lname', '$dob', '$mail', '$pno', '$gender','$password')";
+
+        if (mysqli_query($conn, $sql)) {
+            $_SESSION['registration_success'] = true;
+            echo '<script>alert("Registration completed successfully"); window.location.href = "index.php";</script>';
+            exit();
+        } else {
+            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+        }
+    }
+
+    mysqli_close($conn);
+    ?>
+
+</body>
+
+</html>
+
+//
+
+<html>
+
+<head>
+    <title>User Details</title>
+    <link rel="stylesheet" href="css/display-styles.css">
+</head>
+
+<body>
+    <div class="user-details">
+        <h2>Student Details</h2>
+        <?php
+        session_start();
+
+        if (isset($_SESSION['user_email'])) {
+            $email = $_SESSION['user_email'];
+
+            $host = "localhost";
+            $username = "root";
+            $password = "";
+            $database = "studentlogin";
+
+            $conn = mysqli_connect($host, $username, $password, $database);
+
+            if (!$conn) {
+                die("Connection failed: " . mysqli_connect_error());
+            } else {
+                // Fetch user details from the database
+                $sql = "SELECT * FROM students WHERE mail = '$email'";
+                $result = mysqli_query($conn, $sql);
+
+                if ($result && mysqli_num_rows($result) > 0) {
+                    $row = mysqli_fetch_assoc($result);
+        ?>
+                    <table border=1>
+                        <tr>
+                            <td><strong>First Name:</strong></td>
+                            <td><?php echo $row['fname']; ?></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Last Name:</strong></td>
+                            <td><?php echo $row['lname']; ?></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Date of Birth:</strong></td>
+                            <td><?php echo $row['dob']; ?></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Email:</strong></td>
+                            <td><?php echo $row['mail']; ?></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Mobile Number:</strong></td>
+                            <td><?php echo $row['pno']; ?></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Gender:</strong></td>
+                            <td><?php echo $row['gender']; ?></td>
+                        </tr>
+                    </table>
+                    <a class="logout-btn" href="logout.php">Logout</a>
+                <?php
+                } else {
+                    echo '<p class="error-message">User not found</p>';
+                }
+            }
+
+            mysqli_close($conn);
+        } else {
+            echo '<p class="error-message">User email not set</p>';
+        }
+        ?>
+    </div>
+</body>
+
+</html>
+
+//
+
+CREATE TABLE `students` (
+  `fname` varchar(20) NOT NULL,
+  `lname` varchar(20) NOT NULL,
+  `dob` date NOT NULL,
+  `mail` varchar(20) NOT NULL,
+  `pno` varchar(20) NOT NULL,
+  `gender` varchar(20) NOT NULL,
+  `password` varchar(20) NOT NULL
+)
